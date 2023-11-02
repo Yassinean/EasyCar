@@ -1,0 +1,61 @@
+     <section class="container mx-auto py-6">
+        <div class=" flex flex-col gap-3">
+        <div class="card flex flex-row  w-4/5 px-1 p-2  rounded-xl transform transition-all bg-white">
+          <img
+            class="h-40 object-cover rounded-xl"
+            src="./assets/images/voiture.png"
+            alt="voiture"
+          />
+
+          <div class="card-detail ">
+            <div class="p-2">
+              <h2 class="font-bold text-lg">Nissan Skyline GT-R</h2>
+
+              <p class="text-sm text-gray-600">
+                The Nissan Skyline GT-R R34 is an iconic sports car, renowned
+                for its powerful inline-six engine and legendary all-wheel-drive
+                system. It's a symbol of Japanese automotive excellence and a
+                favorite among enthusiasts.
+              </p>
+            </div>
+
+            <div class="m-2 ">
+              <button
+                class="py-1  px-3 bg-[#15211B] text-white font-semibold rounded-lg shadow-md"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card flex flex-row  w-4/5 px-1 p-2  rounded-xl transform transition-all bg-white">
+          <img
+            class="h-40 object-cover rounded-xl"
+            src="./assets/images/voiture.png"
+            alt="voiture"
+          />
+
+          <div class="card-detail ">
+            <div class="p-2">
+              <h2 class="font-bold text-lg">Nissan Skyline GT-R</h2>
+
+              <p class="text-sm text-gray-600">
+                The Nissan Skyline GT-R R34 is an iconic sports car, renowned
+                for its powerful inline-six engine and legendary all-wheel-drive
+                system. It's a symbol of Japanese automotive excellence and a
+                favorite among enthusiasts.
+              </p>
+            </div>
+
+            <div class="m-2 ">
+              <button
+                class="py-1 w-full px-3 bg-[#15211B] text-white font-semibold rounded-lg shadow-md"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div></div>
+
+ 
+      </section>
