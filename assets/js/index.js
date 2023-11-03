@@ -6,7 +6,7 @@ function fetchdata() {
   fetch("/assets/js/cars.json")
   .then((response) => response.json())
   .then((data) =>{ dataCar.push(...data.cars)  
-   featchCard(data)})
+   featchCard(data.cars)})
   .catch((error) => {
     console.error("Error fetching data:", error);
   });
@@ -46,7 +46,7 @@ function featchCard(data) {
     
   cards.setAttribute("class",styleCalss);
   
-  data.cars.forEach((element, key) => {
+  data.forEach((element, key) => {
     if (key >= beginpage && key <= endpage) {
       const html = `
         <div class="  px-1    p-2 bg-white rounded-xl transform transition-all  ${icon==="grid-outline"?"row-span-1 col-span-1 w-64":"flex flex-row w-4/5"} ">
@@ -76,18 +76,18 @@ function featchCard(data) {
   });
   
 
-  pagination();
+  pagination(data);
 }
 
-function pagination() {
-  let count = Math.ceil(18 / limitpage);
+function pagination(data) {
+  let count = Math.ceil(data.length / limitpage);
   const pagination = document.querySelector(".pagination");
-  pagination.innerHTML = "";
+  pagination.innerHTML = ' ';
   for (let i = 1; i <= count; i++) {
     const htmlPaginate = `<li>
     <button
-      class="h-10 px-5   ${i==page?' text-white bg-indigo-600 border-indigo-600':' text-indigo-600'}transition-colors duration-150 focus:shadow-outline hover:bg-indigo-100"
-      onclick="changePage(${i})"  >
+      class="h-10 px-4  rounded-lg  ${i==page?' text-white bg-[#15211B] border-[#15211B]':' text-[#15211B] border-solid border-2 border-white'}transition-colors duration-150 focus:shadow-outline hover:text-[#15211B] hover:bg-indigo-100"
+      onclick="event.preventDefault(); changePage(${i});" >
   
       ${i}
     </button>
@@ -99,7 +99,9 @@ function pagination() {
 }
 
 function changePage(index) {
+  
   page=index;
+
   fetchdata();
 }
 
@@ -142,6 +144,19 @@ hiddenMadal.forEach(item=>{
 
 
 
+
+
+
+
+
+
+const btnFilter=document.querySelectorAll(".btn-filter")
+const btnRemove =document.querySelector(".btn-remove")
+const applyCar=document.querySelector(".apply-car")
+
+const localData=[]
+
+
 function addToCart(items) {
         const infoCar= dataCar.find(car=>car.id===items)
         modal.classList.remove("hidden")
@@ -151,6 +166,52 @@ function addToCart(items) {
        nameModal.textContent=infoCar.name
        priceModal.textContent=infoCar.price
        descriptionModal.textContent=infoCar.description
+       applyCar.dataset.indexNumber=infoCar.id
 }
+btnFilter.forEach(btn=>{
+  btn.addEventListener("click",(e)=>{
+     let namecar=e.target.name
+    const data=dataCar.filter(item=> item.category ===namecar)
+    featchCard(data)
+    btnRemove.classList.remove('hidden')
+    
+  }
+
+  )
+})
+
+btnRemove.addEventListener("click",()=>{
+  fetchdata();
+  btnRemove.classList.add('hidden')
+})
+
+
+
+
+
+
+
+const dropDown=document.querySelector("#dropdownMenuButton1d")
+const menuButton1d=document.querySelector("#MenuButton1d")
+const  closeDropdown  =document.querySelector(".close-dropdown")
+
+dropDown.addEventListener("click",function(){
+  menuButton1d.classList.toggle("hidden")
+})
+
+
+closeDropdown.addEventListener("click",function(){
+  menuButton1d.classList.add("hidden")
+})
+
+
+
+applyCar.addEventListener("click",function(){
+   const idCar=this.dataset.indexNumber
+   const car=dataCar.find(item=>item.id==idCar)
+  localData.push(car)
+  localStorage.setItem("car-personalization", JSON.stringify(localData));
+  console.log(localData);
+})
 
 
